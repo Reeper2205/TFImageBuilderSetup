@@ -82,7 +82,7 @@ resource "aws_imagebuilder_component" "this" {
 
 resource "aws_imagebuilder_infrastructure_configuration" "this" {
   description           = "Simple infrastructure configuration"
-  instance_profile_name = "EC2-SSM"
+  instance_profile_name = "Ec2ProfileForImageBuilder"
   instance_types        = ["t2.micro"]
   name                  = "amazon-linux-infr"
 
@@ -91,8 +91,8 @@ resource "aws_imagebuilder_infrastructure_configuration" "this" {
 
   logging {
     s3_logs {
-      s3_bucket_name = "aws-davosh-logs"
-      s3_key_prefix  = "/AWSLogs/356061415454/ImageBuilder"
+      s3_bucket_name = "BUCKET_NAME"
+      s3_key_prefix  = "/ImageBuilder"
     }
   }
 
@@ -113,7 +113,7 @@ resource "aws_imagebuilder_distribution_configuration" "this" {
       name = "amzn-linux-{{ imagebuilder:buildDate }}"
 
       launch_permission {
-        user_ids = ["356061415454"]
+        user_ids = ["ACCOUNTNUMBER"]
       }
     }
     region = "eu-west-1"
